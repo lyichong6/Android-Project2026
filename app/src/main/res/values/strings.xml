@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Album Collector</string>
+    <string name="main_title">个人音乐专辑收藏</string>
+    <string name="add_album">添加专辑</string>
+    <string name="view_collection">查看收藏</string>
+    <string name="query_hint">输入专辑名称或歌手名称</string>
+    <string name="query_button">查询</string>
+    <string name="add_button">添加</string>
+    <string name="query_result_placeholder">请先输入关键词并点击查询</string>
+    <string name="collection_title">我的收藏列表</string>
+    <string name="empty_collection">当前还没有收藏专辑</string>
+</resources>

@@ -1,2 +1,16 @@
 # Android-Project2026
-Project repository for Android-Project2026 task preparation
+
+移动平台技术开发课程 Android 作业项目（2026 春夏）。
+
+当前已完成：
+
+- 必做功能 #1
+  - `MainActivity` 提供“添加专辑”和“查看收藏”两个入口按钮
+  - `AddAlbumActivity` 支持关键词查询 iTunes API，并显示专辑名称、歌手、流派、发行年份
+  - 查询失败或无结果时给出错误提示
+- 必做功能 #2
+  - 查询到有效专辑前，“添加”按钮为禁用状态
+  - 查询成功后可点击“添加”加入收藏列表
+  - `AlbumListActivity` 使用 `RecyclerView` 展示收藏列表
+
+说明：当前版本按要求使用内存存储收藏数据，重启应用后收藏会清空（后续可选功能再补持久化）。
