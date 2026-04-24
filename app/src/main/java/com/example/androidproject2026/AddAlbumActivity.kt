@@ -34,8 +34,12 @@ class AddAlbumActivity : AppCompatActivity() {
         rvSearchResults = findViewById(R.id.rvSearchResults)
         rvSearchResults.layoutManager = LinearLayoutManager(this)
         searchResultAdapter = SearchResultAdapter(searchResults) { album ->
-            AlbumRepository.addAlbum(album)
-            Toast.makeText(this, "已添加：${album.albumName}", Toast.LENGTH_SHORT).show()
+            val added = AlbumRepository.addAlbum(album)
+            if (added) {
+                Toast.makeText(this, "已添加：${album.albumName}", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "添加失败：该专辑已在收藏中", Toast.LENGTH_SHORT).show()
+            }
         }
         rvSearchResults.adapter = searchResultAdapter
 

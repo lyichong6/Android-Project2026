@@ -60,9 +60,27 @@ object AlbumRepository {
         prefs.edit().putString(KEY_ALBUMS_JSON, arr.toString()).apply()
     }
 
-    fun addAlbum(album: Album) {
+    private fun albumKey(album: Album): String {
+        return "${album.albumName.trim().lowercase()}|${album.artistName.trim().lowercase()}|${album.releaseYear.trim()}"
+    }
+
+    fun addAlbum(album: Album): Boolean {
+        if (albums.any { albumKey(it) == albumKey(album) }) {
+            return false
+        }
         albums.add(album)
         persist()
+        return true
+    }
+
+    fun removeAlbum(album: Album): Boolean {
+        val index = albums.indexOfFirst { albumKey(it) == albumKey(album) }
+        if (index < 0) {
+            return false
+        }
+        albums.removeAt(index)
+        persist()
+        return true
     }
 
     fun getAlbums(): List<Album> = albums.toList()
