@@ -9,4 +9,5 @@
     <string name="query_result_placeholder">请先输入关键词并点击查询</string>
     <string name="collection_title">我的收藏列表</string>
     <string name="empty_collection">当前还没有收藏专辑</string>
+    <string name="album_artwork">专辑封面</string>
 </resources>

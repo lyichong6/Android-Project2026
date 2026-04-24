@@ -4,8 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 
 class SearchResultAdapter(
     private val items: List<Album>,
@@ -29,6 +31,7 @@ class SearchResultAdapter(
         private val onAddClick: (Album) -> Unit
     ) : RecyclerView.ViewHolder(itemView) {
 
+        private val ivArtwork: ImageView = itemView.findViewById(R.id.ivArtwork)
         private val tvAlbumInfo: TextView = itemView.findViewById(R.id.tvAlbumInfo)
         private val btnAddSingle: Button = itemView.findViewById(R.id.btnAddSingle)
 
@@ -39,6 +42,16 @@ class SearchResultAdapter(
                 流派：${album.genre}
                 发行年份：${album.releaseYear}
             """.trimIndent()
+
+            if (album.artworkUrl.isNotBlank()) {
+                ivArtwork.load(album.artworkUrl) {
+                    crossfade(true)
+                    placeholder(R.drawable.album_placeholder)
+                    error(R.drawable.album_placeholder)
+                }
+            } else {
+                ivArtwork.setImageResource(R.drawable.album_placeholder)
+            }
 
             btnAddSingle.setOnClickListener {
                 onAddClick(album)

@@ -119,24 +119,38 @@ class AddAlbumActivity : AppCompatActivity() {
             val genre = albumObj.optString("primaryGenreName", "未知流派")
             val releaseDate = albumObj.optString("releaseDate", "")
             val releaseYear = if (releaseDate.length >= 4) releaseDate.substring(0, 4) else "未知年份"
+            val artworkUrl = artworkUrlFromJson(albumObj)
 
             albums.add(
                 Album(
                     albumName = albumName,
                     artistName = artistName,
                     genre = genre,
-                    releaseYear = releaseYear
+                    releaseYear = releaseYear,
+                    artworkUrl = artworkUrl
                 )
             )
         }
         return albums
     }
 
+    private fun artworkUrlFromJson(obj: JSONObject): String {
+        val candidates = listOf(
+            obj.optString("artworkUrl100", ""),
+            obj.optString("artworkUrl600", ""),
+            obj.optString("artworkUrl60", "")
+        )
+        return candidates.firstOrNull { it.isNotBlank() }?.trim().orEmpty()
+    }
+
     private fun mergeAlbums(primary: List<Album>, secondary: List<Album>): List<Album> {
         val mergedMap = linkedMapOf<String, Album>()
         (primary + secondary).forEach { album ->
             val key = "${album.albumName.lowercase()}|${album.artistName.lowercase()}|${album.releaseYear}"
-            if (!mergedMap.containsKey(key)) {
+            val existing = mergedMap[key]
+            if (existing == null) {
+                mergedMap[key] = album
+            } else if (existing.artworkUrl.isBlank() && album.artworkUrl.isNotBlank()) {
                 mergedMap[key] = album
             }
         }

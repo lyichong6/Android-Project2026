@@ -8,10 +8,19 @@
     android:orientation="horizontal"
     android:padding="10dp">
 
+    <ImageView
+        android:id="@+id/ivArtwork"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:contentDescription="@string/album_artwork"
+        android:scaleType="centerCrop"
+        android:src="@drawable/album_placeholder" />
+
     <TextView
         android:id="@+id/tvAlbumInfo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:layout_weight="1"
         android:textColor="@android:color/black" />
 

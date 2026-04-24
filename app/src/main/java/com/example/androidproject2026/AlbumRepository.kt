@@ -34,7 +34,8 @@ object AlbumRepository {
                         albumName = name,
                         artistName = o.optString("artistName", "未知歌手"),
                         genre = o.optString("genre", "未知流派"),
-                        releaseYear = o.optString("releaseYear", "未知年份")
+                        releaseYear = o.optString("releaseYear", "未知年份"),
+                        artworkUrl = o.optString("artworkUrl", "")
                     )
                 )
             }
@@ -52,6 +53,7 @@ object AlbumRepository {
                     put("artistName", a.artistName)
                     put("genre", a.genre)
                     put("releaseYear", a.releaseYear)
+                    put("artworkUrl", a.artworkUrl)
                 }
             )
         }
